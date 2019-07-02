@@ -19,10 +19,12 @@ export function onAppInit(authService: AuthService) {
 
 export class HorErrorHandler implements ErrorHandler {
   handleError(error) {
-    console.debug(error.fileName);
-    console.debug(error.lineNumber);
-    console.debug(error.name, error.description);
-    console.debug(error.stack);
+    if (error) {
+      console.debug(error.fileName);
+      console.debug(error.lineNumber);
+      console.debug(error.name, error.description);
+      console.debug(error.stack);
+    }
   }
 }
 

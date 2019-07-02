@@ -21,7 +21,6 @@ export class HttpService {
   constructor(
     private http: HttpClient
   ) {
-    console.log('ENV', environment);
     if (environment.production) {
       this.apiUrl = environment.apiUrl ? environment.apiUrl : `${this.apiProtocol}//${this.apiHostname}:${this.apiPort}/${this.apiPrefix}`;
     } else {
@@ -47,7 +46,7 @@ export class HttpService {
 
   static setAuthHeader(token: string, headers?: HttpHeaders) {
     if (!headers) { headers = new HttpHeaders(); }
-    return headers.set('x-auth', `${token}`);
+    return headers.set('x_auth', `${token}`);
   }
 
   'post'(url: string, data: object): Observable<any> {
@@ -72,7 +71,7 @@ export class HttpService {
       finalize(() => this.endRequest())
     );
   }
-  'get'(url: string, options?: any, requestTimeout?: number): Observable<any> {
+  'get'(url: string, options?: any, requestTimeout: number = 25000): Observable<any> {
     return this.http.get(this.apiUrl + url, options)
       .pipe(
         timeout(requestTimeout || this.apiTimeout),
@@ -136,7 +135,17 @@ export class HttpService {
       if (error.status === 0) {
         this.errorSubject.next(`Backend is down`);
       } else if (error.status === 400) {
-        console.error('form error');
+        if (error.error && error.error.errCode === 11000) {
+					if (error.error.index === 'email') error.error.statusText = 'Duplicate email';
+					else if (error.error.index === 'username') error.error.statusText = 'Duplicate username';
+				} else if (error.error && error.error.errCode === 40010) {
+					error.error.statusText = 'Username or password incorrect';
+				} else if (error.error && error.error.errCode === 2001) {
+					error.error.statusText = 'Please confirm your account';
+				} else if (error.error === 'code') {
+					error.error.statusText = 'Bad code';
+        }
+        return throwError(error.error);
       } else if (error.status === 404) {
         console.log(`404 Error was here`, error);
         shouldThrow = false;
