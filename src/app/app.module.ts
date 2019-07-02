@@ -9,6 +9,7 @@ import { AuthService, HttpService } from '@app/_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { MainModule } from './main/main.module';
 
 export function onAppInit(authService: AuthService) {
   console.log('APP init');
@@ -35,7 +36,8 @@ export class HorErrorHandler implements ErrorHandler {
     HttpClientModule,
     BrowserAnimationsModule,
     AuthModule,
-    SharedModule
+    SharedModule,
+    MainModule
   ],
   providers: [
     HttpService,

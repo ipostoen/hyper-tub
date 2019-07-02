@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AboutComponent } from './main/about/about.component';
+import { NotFoundComponent } from './main/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,7 @@ const routes: Routes = [
   {
     path: 'home',
     pathMatch: 'full',
-    component: SignInComponent
+    component: AboutComponent
   },
   {
     path: 'sign-in',
@@ -23,6 +25,16 @@ const routes: Routes = [
     path: 'sign-up',
     pathMatch: 'full',
     component: SignUpComponent
+  },
+  {
+    path: 'not-found',
+    pathMatch: 'full',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'not-found'
   }
 ];
 

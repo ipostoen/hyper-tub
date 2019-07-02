@@ -1,0 +1,89 @@
+<header class="header">
+  <div class="header-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <div class="header-content">
+            <a [routerLink]="['']" class="header-logo">
+              <img src="/assets/logo.svg" alt="">
+            </a>
+
+            <div class="header-nav">
+
+              <li class="header-nav-item">
+                <a class="header-nav-link" [routerLink]="['/home']" routerLinkActive="header-nav-link-active"
+                  role="button">Home</a>
+              </li>
+
+              <li class="header-nav-item">
+                <a class="header-nav-link" [routerLink]="['/movies']"
+                  routerLinkActive="header-nav-link-active" role="button">Catalog</a>
+              </li>
+
+              <li class="header-nav-item">
+                <a class="header-nav-link" [routerLink]="['/contact']" routerLinkActive="header-nav-link-active"
+                  role="button">Contacts</a>
+              </li>
+
+            </div>
+
+            <div class="header-auth">
+              <button class="header-search-btn" type="button">
+                <i class="icon ion-ios-search"></i>
+              </button>
+
+              <a [routerLink]="['/sign-in']" class="header-sign-in">
+                <i class="icon ion-ios-log-in"></i>
+                <span>sign in</span>
+              </a>
+            </div>
+
+            <button class="header-btn" type="button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form action="#" class="header-search">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="header-search-content">
+            <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+
+            <button type="button">search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</header>
+
+<section class="section first bg" #section data-bg="/assets/section.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-wrap">
+          <!-- section title -->
+          <h2 class="section-title">My FlixGo</h2>
+          <!-- end section title -->
+
+          <!-- breadcrumb -->
+          <!-- <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item breadcrumb-item--active">Profile</li>
+          </ul> -->
+          <!-- end breadcrumb -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

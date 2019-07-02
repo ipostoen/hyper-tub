@@ -1,0 +1,41 @@
+@import "../../../rem";
+@import "../../../colors";
+
+.not-found-page-wrap {
+  @include w(100%);
+  @include rem(min-height, 100vh);
+  @include rows();
+  .not-found-page-content {
+    position: relative;
+    @include w(100%);
+    @include p(40px 0);
+    @include cols();
+    @include rem(max-width, 400px);
+    @include bs(0 5px 25px 0 rgba(0,0,0,0.3));
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      @include h(2px);
+      @include gr();
+      @include bs(0 0 20px 0 $purpule-s);
+    }
+    .not-found-page-title {
+      position: relative;
+      @include gr();
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      @include font($pink, 80px, 100%, 600);
+      @include ts(0 12px 64px $purpule-s)
+    }
+    .not-found-page-text {
+      @include w(100%);
+      text-align: center;
+      @include mb(20px);
+      @include p(0 20px);
+      @include font($lgray, 15px, 25px, normal, ('Open Sans', sans-serif));
+    }
+  }
+}
