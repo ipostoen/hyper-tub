@@ -10,6 +10,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env": ["src/environments/environment"]
+    },
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
