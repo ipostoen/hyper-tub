@@ -1,0 +1,14 @@
+@import '../../../colors';
+
+:host() {
+  .icon-wrap {
+    color: $error-color;
+    position: absolute;
+    top: 13px;
+    right: 15px;
+  }
+  /deep/ .error-tooltip {
+    background-color: #fff;
+    color: $error-color;
+  }
+}

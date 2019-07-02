@@ -1,0 +1,37 @@
+<div class="auth">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="auth-content">
+          <div class="auth-form">
+            <form>
+              <a [routerLink]="['']" class="auth-icon">
+                <img src="/assets/logo.svg">
+              </a>
+
+              <div class="auth-group">
+                <app-input type="text" placeholder="Username" [control]="form.get('username')"></app-input>
+              </div>
+
+              <div class="auth-group">
+                <app-input type="password" placeholder="Password" [control]="form.get('password')"></app-input>
+              </div>
+
+              <div class="auth-group checkbox">
+                <input id="remember" name="remember" [(ngModel)]="remember" type="checkbox" checked="checked">
+                <label for="remember">Remember Me</label>
+              </div>
+            </form>
+            <app-button (click)="signIn()">Sign In</app-button>
+            <span class="auth-text">Don't have an account? <a [routerLink]="['/sign-up']"
+                routerLinkActive="router-link-active">Sign up!</a></span>
+
+            <span class="auth-text"><a href="#">Forgot password?</a></span>
+            <app-button class="google-button">Google</app-button>
+            <app-button class="intra">Intra 42</app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

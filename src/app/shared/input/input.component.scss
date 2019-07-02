@@ -1,0 +1,20 @@
+@import "../../../rem";
+@import "../../../colors";
+
+.auth-input {
+  @include h(50px);
+  @include w(250px);
+  border: none;
+  @include br(0);
+  @include p(0 20px);
+  letter-spacing: 0.2px;
+  background-color: $dark;
+  position: relative;
+  outline: none;
+  @include font(#fff, 15px, 21px, normal, ('Open Sans', sans-serif));
+}
+@media (min-width: 360px) {
+  .auth-input {
+    @include w(280px);
+  }
+}

@@ -1,0 +1,298 @@
+$rem-baseline: 16px !default;
+$rem-fallback: true !default;
+$rem-px-only: false !default;
+$rem-em: true !default;
+$resolution-default: 1 !default;
+$resolution-presets: (
+  "ldpi" 75%,
+  "mdpi" 100%,
+  "hdpi" 150%,
+  "xhdpi" 200%,
+  "xxhdpi" 300%,
+  "xxxhdpi" 400%,
+  "retina" 2,
+  "@2x" 2,
+  "@3x" 3
+) !default;
+
+@function resolution-preset($resolution) {
+  @if type-of($resolution) == "string" {
+    @each $preset in $resolution-presets {
+      @if nth($preset, 1) == $resolution {
+        @return nth($preset, 2)
+      }
+    }
+  }
+  @return $resolution;
+}
+
+@mixin resolution($resolution: $resolution-default) {
+  $resolution: resolution-preset($resolution);
+  @if type-of($resolution) == "number" {
+    @if unit($resolution) == "dpi" {
+      $resolution: $resolution / 96dpi;
+    } @else if unit($resolution) == "%" {
+      $resolution: $resolution / 100%;
+    } @else {
+      $resolution: $resolution / ($resolution * 0 + 1)
+    }
+    @media (-webkit-min-device-pixel-ratio: #{$resolution}), (min-resolution: #{$resolution * 96dpi}) {
+      @content;
+    }
+  } @else {
+    @error "#{$resolution} is not a valid resolution or preset";
+  }
+}
+
+@function em-separator($list) {
+  @if function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
+
+  $test-list: ();
+  @each $item in $list {
+    $test-list: append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
+}
+
+@function em($values...) {
+  $context: nth($values, length($values));
+  $result: ();
+  $separator: em-separator($values);
+
+  @for $i from 1 through length($values) - 1 {
+    $value: nth($values, $i);
+    @if type-of($value) == "number" and unit($value) == "px" {
+      $result: append($result, $value / $context * 1em, $separator);
+    } @else if type-of($value) == "list" {
+      $result: append($result, em(append($value, $context)...), $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+@mixin em($properties) {
+  @each $property in map-keys($properties) {
+    #{$property}: em(append(map-get($properties, $property), $context)...);
+  }
+}
+
+@function rem-separator($list, $separator: false) {
+  @if $separator == "comma" or $separator == "space" {
+    @return append($list, null, $separator);
+  }
+
+  @if function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
+
+  // list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+  $test-list: ();
+  @each $item in $list {
+    $test-list: append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
+}
+
+@mixin rem-baseline($zoom: 100%) {
+  font-size: $zoom / 16px * $rem-baseline;
+}
+
+@function rem-convert($to, $values...) {
+  $result: ();
+  $separator: rem-separator($values);
+
+  @each $value in $values {
+    @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+      $result: append($result, $value / 1rem * $rem-baseline, $separator);
+    } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+      // $result: append($result, $value / 20px * 1em, $separator);
+      $result: append($result, $value / $rem-baseline * 1rem, $separator);
+    } @else if type-of($value) == "list" {
+      $value-separator: rem-separator($value);
+      $value: rem-convert($to, $value...);
+      $value: rem-separator($value, $value-separator);
+      $result: append($result, $value, $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}
+@function r2em-convert($to, $values...) {
+  $result: ();
+  $separator: rem-separator($values);
+
+  @each $value in $values {
+    @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+      $result: append($result, $value / 1rem * $rem-baseline, $separator);
+    } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+      $result: append($result, $value / $rem-baseline * 1rem, $separator);
+    } @else if type-of($value) == "list" {
+      $value-separator: rem-separator($value);
+      $value: rem-convert($to, $value...);
+      $value: rem-separator($value, $value-separator);
+      $result: append($result, $value, $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+@function rem($values...) {
+  @if $rem-px-only {
+    @return rem-convert(px, $values...);
+  // } @else if $rem-em {
+    // @return em($values, $rem-baseline);
+  } @else {
+    @return rem-convert(rem, $values...);
+  }
+}
+// @mixin rem($values...) {
+//
+// }
+@mixin rem($properties, $values...) {
+  @if type-of($properties) == "map" {
+    @each $property in map-keys($properties) {
+      @include rem($property, map-get($properties, $property));
+    }
+  } @else {
+    @each $property in $properties {
+      // em(o)
+      @if $rem-fallback or $rem-px-only {
+        #{$property}: rem-convert(px, $values...);
+      }
+      @if not $rem-px-only {
+        // #{$property}: em($values...);
+        #{$property}: rem-convert(rem, $values...);
+      }
+    }
+  }
+}
+
+@mixin font($color: #2A2E33, $size: 14px, $lh: 21px, $weight: 400, $family: 'Ubuntu') {
+  font-family: $family;
+  @include rem(font-size, $size);
+  @include rem(line-height, $lh);
+  color: $color;
+  font-weight: $weight;
+}
+@mixin pad($t, $r, $b, $l) {
+  @include rem(padding-top, $t);
+  @include rem(padding-right,$r);
+  @include rem(padding-bottom, $b);
+  @include rem(padding-left, $l);
+}
+
+@mixin row($ai: center, $jc: center){
+  display: flex;
+  flex-direction: row;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-wrap: wrap;
+}
+
+@mixin rows($ai: center, $jc: center){
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: $ai;
+  justify-content: $jc;
+}
+@mixin cols($ai: center, $jc: center){
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: $ai;
+  justify-content: $jc;
+}
+@mixin mw($w) {
+  @include rem(width, $w);
+  @include rem(max-width, $w);
+}
+
+@mixin mr($p) {
+  @include rem(margin-right, $p);
+}
+@mixin ml($p) {
+  @include rem(margin-left, $p);
+}
+@mixin mt($p) {
+  @include rem(margin-top, $p);
+}
+@mixin mb($p) {
+  @include rem(margin-bottom, $p);
+}
+@mixin m($p) {
+  @include rem(margin, $p);
+}
+@mixin pr($p) {
+  @include rem(padding-right, $p);
+}
+@mixin pl($p) {
+  @include rem(padding-left, $p);
+}
+@mixin pt($p) {
+  @include rem(padding-top, $p);
+}
+@mixin pb($p) {
+  @include rem(padding-bottom, $p);
+}
+@mixin p($p) {
+  @include rem(padding, $p);
+}
+@mixin b($b) {
+  @include rem(border, $b);
+}
+@mixin br($p) {
+  @include rem(border-radius, $p);
+}
+@mixin bs($p) {
+  @include rem(box-shadow, $p);
+}
+@mixin ts($p) {
+  @include rem(text-shadow, $p);
+}
+@mixin h($p) {
+  @include rem(height, $p);
+}
+@mixin w($p) {
+  @include rem(width, $p);
+}
+@mixin gr($p: 90deg) {
+  background-image: -moz-linear-gradient($p, $purpule 0%, $pink 100%);
+  background-image: -webkit-linear-gradient($p, $purpule 0%, $pink 100%);
+  background-image: -ms-linear-gradient($p, $purpule 0%, $pink 100%);
+  background-image: linear-gradient($p, $purpule 0%, $pink 100%);
+}
+@mixin size($h, $w: $h) {
+  @include h($h);
+  @include w($w)
+}
+@mixin scroll($margin-top: 5px) {
+  &::-webkit-scrollbar {
+    @include rem(width, 10px);
+    @include rem(padding-top, 15px);
+    @include rem(padding-bottom, 15px);
+  }
+  &::-webkit-scrollbar-track {
+    @include rem(margin, 1px);
+    @include mt($margin-top);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include rem(border, solid 3.3px transparent);
+    @include rem(border-radius, 10px);
+    @include rem(box-shadow, inset 0 0 10px 10px #cad2de);
+  }
+}
+@mixin bb() {
+  box-sizing: border-box;
+}

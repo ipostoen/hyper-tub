@@ -1,1 +1,834 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$frontend-primary: mat-palette($mat-indigo);
+$frontend-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$frontend-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($frontend-theme);
+
 /* You can add global styles to this file, and also import other style files */
+@import "./colors";
+@import "./rem";
+$ionicons-font-path: "~ionicons/dist/fonts";
+@import "~ionicons/dist/scss/ionicons.scss";
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #2b2b31;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+a {
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+a:hover,
+a:active,
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+input,
+textarea,
+select {
+  padding: 0;
+  margin: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+::-moz-selection {
+  background: #fff;
+  color: #000;
+  text-shadow: none;
+}
+::selection {
+  background: #fff;
+  color: #000;
+  text-shadow: none;
+}
+::-webkit-input-placeholder {
+  color: rgba(255,255,255,0.5);
+  opacity: 1;
+}
+::-moz-placeholder {
+  color: rgba(255,255,255,0.5);
+  opacity: 1;
+}
+:-moz-placeholder {
+  color: rgba(255,255,255,0.5);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: rgba(255,255,255,0.5);
+  opacity: 1;
+}
+
+.section {
+  position: relative;
+  @include p(40px 0);
+  .section-title {
+    @include mb(25px);
+    @include font(#fff, 28px, 28px, 300);
+    b {
+      font-weight: 700;
+    }
+    &.center {
+      text-align: center;
+    }
+    &.no-margin {
+      @include mb(10px);
+    }
+  }
+  .section-text {
+    @include mb(25px);
+    letter-spacing: 0.2px;
+    @include font(#ffffffb3, 16px, 26px, normal, ('Open Sans', sans-serif));
+    &:last-child {
+      @include mb(0);
+    }
+    &.last-with-margin:last-child {
+      @include mb(30px);
+    }
+    b {
+      font-weight: 600;
+    }
+    a {
+      color: $purpule;
+      &:hover {
+        color: $purpule;
+        text-decoration: underline;
+      }
+    }
+  }
+  .section-wrap {
+    @include cols(flex-start, flex-start);
+  }
+  &.dark {
+    background-color: #28282d;
+  }
+  &.first {
+    @include mt(70px);
+    .section-title {
+      @include mb(0);
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      @include h(2px);
+      display: block;
+      @include gr();
+      @include bs(0 0 20px 0 $purpule-s);
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .section-title {
+    font-size: 30px;
+  }
+}
+@media (min-width: 768px) {
+  .section {
+    @include p(60px 0);
+    .section-title {
+      font-size: 32px;
+      @include mb(35px);
+      &.no-margin {
+        @include mb(20px);
+      }
+    }
+    .section-wrap {
+      @include cols(flex-start, space-between);
+    }
+    .section__btn {
+      margin: 20px auto 15px;
+    }
+    &.first {
+      @include mt(90px);
+    }
+    &.bg {
+      background: url('/assets/section.jpg'),
+      // background-position: center center,
+      // background-repeat: no-repeat,
+      // background-size: cover,
+    }
+  }
+  
+  
+}
+@media (min-width: 992px) {
+  .section-text {
+    &.last-with-margin:last-child {
+      @include mb(30px);
+    }
+  }
+  .no-margin {
+    @include mb(15px);
+  }
+}
+@media (min-width: 1200px) {
+  .section-title {
+    @include font(#fff, 36px);
+  }
+  .section-title--sidebar {
+    @include font(#fff, 32px);
+  }
+}
+
+// .section {
+//   position: relative;
+//   @include p(40px 0);
+//   &.dark {
+//     background-color: #28282d;
+//   } 
+//   .section-title {
+//     @include mb(25px);
+//     @include font($white, 28px, 21px, 300);
+//     b {
+//       font-weight: 700;
+//     }
+//     &.center {
+//       text-align: center;
+//     }
+//     &.no-margin {
+//       @include mb(10px);
+//     }
+//   }
+//   .section-text {
+//     @include mb(25px);
+//     letter-spacing: 0.3px;
+//     @include font($lgray, 16px, 26px, normal, ('Open Sans', sans-serif));
+//     &:last-child {
+//       @include mb(0);
+//     }
+//     &.last-with-margin {
+//       @include mb(30px);
+//     }
+//     b {
+//       font-weight: 600;
+//     }
+//     a {
+//       color: $purpule;
+//       &:hover {
+//         color: $purpule;
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+// }
+
+.feature {
+  display: block;
+  position: relative;
+  @include m(15px 0);
+  @include pl(65px);
+  .feature-icon {
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 46px;
+    &:before {
+      @include gr(0deg);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: $purpule;
+    }
+  }
+  .feature-title {
+    @include mb(10px);
+    @include font(#fff, 18px, 18px, 500);
+  }
+  .feature-text {
+    display: block;
+    @include font($lgray, 15px, 25px, normal, ('Open Sans', sans-serif));
+    @include m(0);
+    letter-spacing: 0.2px;
+  }
+}
+
+.how {
+  display: block;
+  @include m(15px 0);
+  .how-number {
+    @include font($purpule, 50px, 100%, 700);
+    @include mb(10px);
+    display: inline-block;
+    @include gr(0deg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .how-title {
+    @include font(#fff, 18px, 21px, 500);
+    @include mb(10px);
+  }
+  .how-text {
+    @include font($lgray, 15px, 25px, normal, ('Open Sans', sans-serif));
+    margin: 0;
+    letter-spacing: 0.2px;
+    b {
+      font-weight: 600;
+    }
+  }
+}
+@media (min-width: 992px) {
+  .how {
+    @include m(20px 0);
+  }
+}
+
+.auth {
+  position: relative;
+  display: block;
+  .auth-content {
+    @include rows();
+    @include p(40px 0);
+    @include w(100%);
+    @include rem(min-height, 100vh);
+    .auth-form {
+      position: relative;
+      @include cols();
+      @include p(40px 20px);
+      background-color: #28282d;
+      @include bs(0 5px 25px 0 rgba(0,0,0,0.3));
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        @include h(2px);
+        display: block;
+        @include gr();
+        @include bs(0 0 20px 0 $purpule-s);
+      }
+      .auth-icon {
+        @include mb(40px);
+        a {
+          max-width: 100%;
+          width: auto;
+        }
+        img {
+          @include w(172px);
+          @include mb(40px);
+        }
+      }
+      .auth-group {
+        position: relative;
+        @include mb(20px);
+
+        &.checkbox {
+          @include w(100%);
+          text-align: left;
+          input:not(:checked), input:checked {
+            position: absolute;
+            left: -9999px;
+          }
+          input:not(:checked) + label, input:checked + label {
+            @include m(0);
+            @include font(#ffffff80, 14px, 22px, normal, ('Open Sans', sans-serif));
+            position: relative;
+            cursor: pointer;
+            @include pl(34px);
+            a {
+              @include gr();
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              color: $purpule;
+              opacity: 0.75;
+              &:hover {
+                opacity: 1;
+              }
+            }
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              @include w(20px);
+              @include h(20px);
+              background-color: $dark;
+            }
+            &:after {
+              content: '\f3ff';
+              position: absolute;
+              top: 0;
+              left: 0;
+              text-align: center;
+              @include w(20px);
+              @include h(20px);
+              @include font($purpule, 20px, 20px, normal, 'Ionicons');
+              -webkit-transition: 0.4s;
+              -moz-transition: 0.4s;
+              transition: 0.4s;
+            }
+          }
+          input:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            -moz-transform: scale(0);
+            transform: scale(0);
+          }
+          input:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            transform: scale(1);
+          }
+        }
+      }
+      .auth-text {
+        @include mt(20px);
+        @include font(#ffffff80, 14px, 21px, normal, ('Open Sans', sans-serif));
+        a {
+          position: relative;
+          @include gr(0deg);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: $purpule;
+          opacity: 0.8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 360px) {
+  .sign-input {
+    width: 280px;
+  }
+}
+@media (min-width: 768px) {
+  .auth-form {
+    @include p(50px 60px !important);
+  }
+  .auth-icon {
+    @include mb(50px !important);
+  }
+}
+
+.card {
+  @include mb(30px);
+  @include b(none);
+  background-color: #2b2b31;
+  .card-cover {
+    position: relative;
+    @include bs(none);
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    transition: 0.4s ease;
+    img {
+      @include w(100%);
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      @include gr();
+      opacity: 0;
+      -webkit-transition: 0.4s ease;
+      -moz-transition: 0.4s ease;
+      transition: 0.4s ease;
+    }
+    &:hover {
+      @include bs(0 0 20px 0 $purpule-s);
+      .card-play {
+        opacity: 1;
+      }
+    }
+    &:hover:before {
+      opacity: 0.65;
+    }
+    .card-play {
+      position: absolute;
+      @include rows();
+      @include h(60px);
+      @include w(60px);
+      @include b(2px solid #fff);
+      @include br(50%);
+      top: 50%;
+      left: 50%;
+      @include m(-30px 0 0 -30px);
+      z-index: 2;
+      -webkit-transition: 0.4s ease;
+      -moz-transition: 0.4s ease;
+      transition: 0.4s ease;
+      opacity: 0;
+      @include font(#fff, 30px);
+      i {
+        @include m(2px 0 0 3px);
+      }
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .card-content {
+    position: relative;
+    display: block;
+    @include mt(10px);
+    .card-title {
+      overflow: hidden;
+      @include m(0);
+      @include font(#fff, 18px, 21px, 400);
+      white-space: nowrap;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      a {
+        color: #fff;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .card-category {
+      @include row(flex-start, flex-start);
+      a {
+        position: relative;
+        opacity: 0.8;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        @include gr(180deg);
+        @include mr(7px);
+        @include font($purpule, 14px, 21px, normal, ('Open Sans', sans-serif));
+        &:after {
+          content: ',';
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 100%;
+          color: $purpule;
+          @include gr();
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        &:last-child {
+          @include mr(0);
+        }
+        &:last-child:after {
+          display: none;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .card-rate {
+      @include mt(2px);
+      position: relative;
+      @include rows(center, flex-start);
+      @include font(#fff, 16px, 21px, 500);
+      i {
+        @include mr(5px);
+        @include ts(0 0 6px $purpule-s);
+        &:before {
+          @include gr(0deg);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: $purpule-s;
+        }
+      }
+    }
+  }
+  &.card-details {
+    .card-cover {
+      img {
+        @include w(100%);
+        @include rem(max-width, 270px);
+      }
+      &:before {
+        display: none;
+      }
+      &:hover {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+    .card-description {
+      display: block;
+      @include mt(15px);
+      @include font(#ffffff80, 15px, 25px, normal, ('Open Sans', sans-serif));
+      letter-spacing: 0.2px;
+    }
+    .card-list {
+      @include ml(15px);
+      @include rows(center, flex-start);
+      li {
+        @include b(1px solid rgba(255,255,255,0.26));
+        @include p(5px 5px 4px);
+        @include br(4px);
+        @include mr(10px);
+        @include font(#ffffffa6, 12px, 100%, 700);
+        &:last-child {
+          @include mr(0);
+        }
+      }
+    }
+    .card-wrap {
+      @include mt(15px);
+      @include rows(center, flex-start);
+    }
+    .card-content {
+      @include mt(15px);
+    }
+    .card-meta {
+      display: block;
+      @include mt(15px);
+      @include font(rgba(255,255,255,0.7), 15px, 24px);
+      span {
+        @include mr(7px);
+        color: rgba(255,255,255,0.7);
+      }
+      li {
+        @include w(100%);
+        @include row(flex-start,flex-start);
+        font-family: 'Open Sans', sans-serif;
+        &:last-child {
+          @include mb(0);
+        }
+      }
+      a {
+        opacity: 0.8;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        @include mr(7px);
+        @include gr(0deg);
+        @include font($purpule, 15px);
+        &:after {
+          content: ',';
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 100%;
+          @include gr(0deg);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: $purpule;
+        }
+        &:hover {
+          opacity: 1;
+        }
+        &:last-child {
+          @include mr(0);
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+    .card-rate {
+      @include mt(0);
+    }
+  }
+}
+@media (min-width: 576px) {
+  .card-list {
+    .card-content {
+      @include mt(0);
+      @include h(212px);
+      overflow: hidden;
+      position: relative;
+    }
+    .card-title {
+      @include font(#fff, 20px, 24px);
+      @include mb(5px);
+      @include mt(-4px);
+    }
+    .card-rate {
+      @include mt(0);
+    }
+    .card-content {
+      @include mt(0);
+    }
+    .card-wrap {
+      @include mt(0);
+    }
+  }
+  .card-list {
+    @include ml(15px);
+    @include rows(center, flex-start);
+    li {
+      @include p(5px 5px 4px);
+      @include b(1px solid rgba(255,255,255,0.1));
+      @include br(4px);
+      @include font(rgba(255,255,255,0.65), 12px, 100%, 700);
+      &:last-child {
+        @include mr(0);
+      }
+    }
+  }
+  .card-description {
+    display: block;
+    @include mt(10px);
+    p {
+      @include font( rgba(255,255,255,0.7),15px,25px,normal,('Open Sans', sans-serif));
+      @include mb(15px);
+      letter-spacing: 0.2px;
+      &:last-child {
+        @include mb(0);
+      }
+    }
+  }
+  .card-wrap {
+    @include mt(10px);
+    @include rows(center,flex-start);
+  }
+}
+@media (min-width: 768px) {
+  .card-list {
+    // @include mb(50px);
+    .card-content {
+      @include h(310px);
+    }
+  }
+}
+@media (min-width: 992px) {
+  .card-list .card-content {
+    @include h(190px);
+  }
+}
+@media (min-width: 1200px) {
+  .card-list .card-title {
+    font-size: 22px;
+  }
+  .card-list .card-content {
+    @include h(237px);
+  }
+  .card-details {
+    @include mb(0px);
+  }
+  .card-series {
+    @include mb(30px);
+  }
+}
+
+
+.plyr {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+}
+.plyr__menu__container .plyr__control {
+  -webkit-transition: 0s ease;
+  -moz-transition: 0s ease;
+  transition: 0s ease;
+}
+.plyr__control--overlaid {
+  @include gr();
+  @include bs(none);
+  @include p(20px);
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.plyr__control--overlaid:hover {
+  @include gr();
+  @include bs(0 0 20px 0 $purpule-s)
+}
+.plyr__control.plyr__control--overlaid {
+  @include br(50%);
+}
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded="true"] {
+  background: none;
+  @include gr();
+}
+.plyr--video .plyr__progress__buffer {
+  @include bs(none);
+}
+.plyr__progress__buffer {
+  @include br(0);
+}
+.plyr--full-ui input[type="range"] {
+  color: $purpule;
+  @include br(0);
+}
+.plyr__tab-focus {
+  @include bs(none);
+  outline: none;
+}
+.plyr__tooltip {
+  font-weight: 300;
+}
+.plyr__control.plyr__tab-focus {
+  @include bs(none);
+}
+.plyr__menu__container .plyr__control[role="menuitemradio"][aria-checked="true"]::before {
+  background: none;
+  @include gr();
+}
+.plyr__control {
+  @include br(4px);
+}
+.plyr--video .plyr__control svg {
+  filter: none;
+}

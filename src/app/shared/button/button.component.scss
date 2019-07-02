@@ -1,0 +1,17 @@
+@import "../../../rem";
+@import "../../../colors";
+
+.app-button {
+  @include h(50px);
+  @include w(150px);
+  @include rows();
+  @include font($white, 13px, 21px, 500);
+  letter-spacing: 1px;
+  @include gr();
+  @include br(4px);
+  border: none;
+  @include bs(0 0 20px 0 $purpule-s);
+  @include mt(10px);
+  text-transform: uppercase;
+  outline: none;
+}
