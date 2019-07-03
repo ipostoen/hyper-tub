@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService, HttpService } from '@app/_services';
@@ -11,6 +9,10 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
 import { UserModule } from './user/user.module';
+
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 export function onAppInit(authService: AuthService) {
   console.log('APP init');
@@ -29,6 +31,10 @@ export class HorErrorHandler implements ErrorHandler {
   }
 }
 
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -41,7 +47,14 @@ export class HorErrorHandler implements ErrorHandler {
     AuthModule,
     SharedModule,
     MainModule,
-    UserModule
+    UserModule,
+    TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
   ],
   providers: [
     HttpService,
@@ -51,4 +64,6 @@ export class HorErrorHandler implements ErrorHandler {
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
