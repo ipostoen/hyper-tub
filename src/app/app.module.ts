@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
+import { UserModule } from './user/user.module';
 
 export function onAppInit(authService: AuthService) {
   console.log('APP init');
@@ -39,7 +40,8 @@ export class HorErrorHandler implements ErrorHandler {
     BrowserAnimationsModule,
     AuthModule,
     SharedModule,
-    MainModule
+    MainModule,
+    UserModule
   ],
   providers: [
     HttpService,

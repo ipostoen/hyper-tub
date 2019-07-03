@@ -79,9 +79,11 @@ export class HttpService {
         finalize(() => this.endRequest())
       );
   }
-  'put'(url: string, data: object): Observable<any> {
+  'put'(url: string, data: object, options?: any): Observable<any> {
+    console.log('PUT');
+    
     this.requestSubject.next('Updating data');
-    return this.http.put(this.apiUrl + url, data)
+    return this.http.put(this.apiUrl + url, data, options)
       .pipe(
         timeout(this.apiTimeout),
         catchError(this.handleError),
@@ -138,6 +140,8 @@ export class HttpService {
         if (error.error && error.error.errCode === 11000) {
 					if (error.error.index === 'email') error.error.statusText = 'Duplicate email';
 					else if (error.error.index === 'username') error.error.statusText = 'Duplicate username';
+				} else if (error.error && error.error.errCode === 11999) {
+					error.error.statusText = 'oldPass incorect';
 				} else if (error.error && error.error.errCode === 40010) {
 					error.error.statusText = 'Username or password incorrect';
 				} else if (error.error && error.error.errCode === 2001) {

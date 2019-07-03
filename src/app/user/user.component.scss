@@ -1,0 +1,156 @@
+@import "../../rem";
+@import "../../colors";
+
+.profile {
+  background-color: #28282d;
+  -webkit-box-shadow: 0 5px 25px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 5px 25px 0 rgba(0,0,0,0.3);
+  margin-bottom: 30px;
+}
+.profile-content {
+  @include cols(flex-start, flex-start);
+  @include p(20px 0);
+}
+.profile-user {
+  @include rows(center, flex-start);
+  @include mb(10px);
+}
+.profile-meta {
+  @include cols(flex-start, flex-start);
+}
+.profile-meta h3 {
+  display: block;
+  @include mb(2px);
+  @include font(#fff, 16px, 21px, 500);
+}
+.profile-meta span {
+  @include font(#ffffff80, 14px, 21px, normal, ('Open Sans', sans-serif));
+}
+.profile-avatar {
+  display: block;
+  position: relative;
+  @include w(50px);
+  cursor: pointer;
+  overflow: hidden;
+  @include br(50%);
+  @include mr(15px);
+}
+.profile-avatar img {
+  width: 100%;
+}
+.profile-logout {
+  @include rows();
+  @include h(40px);
+  @include w(40px);
+  @include br(4px);
+  @include bs(0 0 20px 0 rgba(0,0,0,0.15));
+  background-color: rgba(255,255,255,0.05);
+  @include font(#fff, 12px, 21px, 500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+}
+.profile-logout:hover {
+  opacity: 1;
+  color: #fff;
+}
+.profile-logout span {
+  display: none;
+}
+.profile-logout i {
+  @include font(#fff, 24px);
+}
+.profile-form {
+  background-color: #28282d;
+  @include p(20px 15px);
+  @include mb(30px);
+  @include bs(0 0 20px 0 rgba(0,0,0,0.3));
+}
+.profile-title {
+  display: block;
+  @include mb(20px);
+  @include font(#fff, 16px, 21px, 500);
+}
+.profile-group {
+  position: relative;
+  @include mb(20px);
+}
+.profile-label {
+  letter-spacing: 0.2px;
+  @include mb(10px);
+  @include font(#ffffffbf, 15px, 21px, normal, ('Open Sans', sans-serif));
+}
+.profile-input {
+  background-color: #2b2b31;
+  @include b(none);
+  @include h(50px);
+  @include w(100%);
+  @include p(0 20px);
+  @include br(0);
+  @include font(#fff, 15px, 21px, normal, ('Open Sans', sans-serif));
+  position: relative;
+  letter-spacing: 0.2px;
+}
+.user-row {
+  @include rows(flex-start, space-around);
+}
+@media (min-width: 360px) {
+  .profile-form {
+    @include p(20px);
+  }
+}
+@media (min-width: 768px) {
+  .profile {
+    @include mb(50px);
+  }
+  .profile-content {
+    @include p(0);
+    @include h(90px);
+    @include rows(center, flex-start);
+  }
+  .profile-user {
+    @include w(210px);
+    @include mb(0);
+    @include mr(35px);
+  }
+  .profile-logout {
+    @include ml(auto);
+    @include mt(0);
+    @include h(50px);
+    @include w(140px); 
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+  .profile-logout i {
+    display: none;
+  }
+  .profile-logout span {
+    display: block;
+  }
+  .profile-form {
+    @include p(30px 20px);
+    @include mb(50px);
+  }
+  .profile-title {
+    @include mb(25px);
+  }
+  .profile-btn {
+    @include w(140px);
+    @include m(10px 0 0);
+  }
+}
+@media (min-width: 992px) {
+  .profile-form {
+    @include p(30px);
+  }
+}
+@media (min-width: 1200px) {
+  .profile-user {
+    @include w(240px);
+    @include mr(50px);
+  }
+}

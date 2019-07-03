@@ -1,0 +1,171 @@
+<div class="content">
+  <!-- profile -->
+  <div class="profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="profile-content">
+            <div class="profile-user">
+              <div class="profile-avatar">
+                <img src="img/user.png" alt="">
+              </div>
+              <div class="profile-meta">
+                <h3>{{user?.username}}</h3>
+                <span>HyperTUBE ID: {{user?._id}}</span>
+              </div>
+            </div>
+
+            <button class="profile-logout" type="button" (click)="logout()">
+              <i class="icon ion-ios-log-out"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end profile -->
+
+  <div class="container">
+    <!-- content tabs -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+        <div class="row user-row">
+          <!-- details form -->
+          <div class="col-12 col-lg-6">
+            <form action="#" class="profile-form">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="profile-title">Profile details</h4>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="oldpass">Username</label>
+                    <app-input class="profile" type="text" type="text" placeholder="Username" [control]="infoForm.get('username')"></app-input>
+                    <app-input-error class="profile" *ngIf="infoForm.get('username').invalid && infoForm.get('username').dirty" label="Username" [control]="infoForm.get('username')"></app-input-error>
+                  </div>
+                </div>
+
+                <div *ngIf="!hide" class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="oldpass">Email</label>
+                    <app-input class="profile" type="text" type="text" placeholder="Email" [control]="infoForm.get('email')"></app-input>
+                    <app-input-error class="profile" *ngIf="infoForm.get('email').invalid && infoForm.get('email').dirty" label="Email" [control]="infoForm.get('email')"></app-input-error>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="oldpass">FirstName</label>
+                    <app-input class="profile" type="text" type="text" placeholder="FirstName" [control]="infoForm.get('firstName')"></app-input>
+                    <app-input-error class="profile" *ngIf="infoForm.get('firstName').invalid && infoForm.get('firstName').dirty" label="FirstName" [control]="infoForm.get('firstName')"></app-input-error>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="oldpass">LastName</label>
+                    <app-input class="profile" type="text" type="text" placeholder="LastName" [control]="infoForm.get('lastName')"></app-input>
+                    <app-input-error class="profile" *ngIf="infoForm.get('lastName').invalid && infoForm.get('lastName').dirty" label="LastName" [control]="infoForm.get('lastName')"></app-input-error>
+                  </div>
+                </div>
+
+                <div *ngIf="!hide" class="col-12">
+                  <app-button (click)="saveInfo()">Save</app-button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- end details form -->
+
+          <!-- password form -->
+          <div *ngIf="!hide" class="col-12 col-lg-6">
+            <form action="#" class="profile-form">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="profile-title">Change password</h4>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="oldpass">Old Password</label>
+                    <app-input class="profile" type="password" placeholder="Password" [control]="passwordForm.get('oldPassword')"></app-input>
+                    <app-input-error class="profile" *ngIf="passwordForm.get('oldPassword').invalid && passwordForm.get('oldPassword').dirty" label="OldPassword" [control]="passwordForm.get('oldPassword')"></app-input-error>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="newpass">New Password</label>
+                    <app-input class="profile" type="password" placeholder="New password" [control]="passwordForm.get('password').get('password')"></app-input>
+                    <app-input-error class="profile" *ngIf="passwordForm.get('password').get('password').invalid && passwordForm.get('password').get('password').dirty" label="Password" [control]="passwordForm.get('password').get('password')"></app-input-error>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                  <div class="profile-group">
+                    <label class="profile-label" for="confirmpass">Confirm New Password</label>
+                    <app-input class="profile" type="password" placeholder="Confirm new password" [control]="passwordForm.get('password').get('password2')"></app-input>
+                    <app-input-error class="profile" *ngIf="passwordForm.get('password').invalid && passwordForm.get('password').get('password2').dirty" label="Confirm Password" [control]="passwordForm.get('password')"></app-input-error>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <app-button (click)="changePassword()">Change</app-button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- end password form -->
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+        <div class="row">
+          <!-- price -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="price price--profile">
+              <div class="price-item price-item--first"><span>Basic</span> <span>Free</span></div>
+              <div class="price-item"><span>7 days</span></div>
+              <div class="price-item"><span>720p Resolution</span></div>
+              <div class="price-item"><span>Limited Availability</span></div>
+              <div class="price-item"><span>Desktop Only</span></div>
+              <div class="price-item"><span>Limited Support</span></div>
+              <a href="#" class="price-btn">Choose Plan</a>
+            </div>
+          </div>
+          <!-- end price -->
+
+          <!-- price -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="price price--profile price--premium">
+              <div class="price-item price-item--first"><span>Premium</span> <span>$19.99</span></div>
+              <div class="price-item"><span>1 Month</span></div>
+              <div class="price-item"><span>Full HD</span></div>
+              <div class="price-item"><span>Lifetime Availability</span></div>
+              <div class="price-item"><span>TV & Desktop</span></div>
+              <div class="price-item"><span>24/7 Support</span></div>
+              <a href="#" class="price-btn">Choose Plan</a>
+            </div>
+          </div>
+          <!-- end price -->
+
+          <!-- price -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="price price--profile">
+              <div class="price-item price-item--first"><span>Cinematic</span> <span>$39.99</span></div>
+              <div class="price-item"><span>2 Months</span></div>
+              <div class="price-item"><span>Ultra HD</span></div>
+              <div class="price-item"><span>Lifetime Availability</span></div>
+              <div class="price-item"><span>Any Device</span></div>
+              <div class="price-item"><span>24/7 Support</span></div>
+              <a href="#" class="price-btn">Choose Plan</a>
+            </div>
+          </div>
+          <!-- end price -->
+        </div>
+      </div>
+    </div>
+    <!-- end content tabs -->
+  </div>

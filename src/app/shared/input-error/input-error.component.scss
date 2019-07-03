@@ -1,5 +1,10 @@
 @import '../../../colors';
 
+:host(.profile) {
+  .icon-wrap {
+    top: 46px;
+  }
+}
 :host() {
   .icon-wrap {
     color: $error-color;

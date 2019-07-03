@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.auth.logout();
+    if (this.auth.user) this.auth.logout();
   }
 
   navigate() {

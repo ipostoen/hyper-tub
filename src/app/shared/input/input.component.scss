@@ -1,6 +1,12 @@
 @import "../../../rem";
 @import "../../../colors";
 
+:host(.profile) {
+  .auth-input {
+    @include w(100%);
+  }
+}
+
 .auth-input {
   @include h(50px);
   @include w(250px);

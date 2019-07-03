@@ -7,6 +7,8 @@ export class ValidationService {
   constructor() { }
 
   static getErrorMessage(errorName: string, errorLabel?: string, errorValue?: any) {
+    console.log('va;id', errorName, errorLabel);
+    
     if (errorName) {
       const errors = {
         'token': `Invalid token`,

@@ -24,7 +24,6 @@ export class AuthService {
       if (token) {
         this.saveToken(token);
         if (!this.user) {
-          console.log('tryty');
           this.getUserInfo(token).subscribe((response) => {
             console.debug('My USER:', response);
           }, (error) => {
@@ -38,8 +37,6 @@ export class AuthService {
   load(fromInterceptop?) {
     return new Promise((resolve, reject) => {
       let token = window.sessionStorage.getItem(`token`) || window.localStorage.getItem(`token`);
-      console.log('token', token);
-      
       if (token) {
         this.$accessTokenSubject.next(token);
         return resolve(true)
@@ -116,13 +113,14 @@ export class AuthService {
     })
   }
 
-  public logout() { // should send signout request to backend?
-    this.http.delete('/auth/logout', {
+  public logout() {
+    this.http.delete('/auth/logout', { observe: 'response',
       headers: HttpService.setAuthHeader(this.token)
+    }).subscribe((res) => {
+      this.clearStorage();
+      this.$userSubject.next(null);
+      this.$accessTokenSubject.next(null);
     });
-    this.clearStorage();
-    this.$userSubject.next(null);
-    this.$accessTokenSubject.next(null);
+    
   }
-
 }

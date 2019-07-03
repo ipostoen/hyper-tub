@@ -4,6 +4,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { AboutComponent } from './main/about/about.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
     path: 'home',
     pathMatch: 'full',
     component: AboutComponent
+  },
+  {
+    path: 'user/:id',
+    pathMatch: 'full',
+    component: UserComponent
   },
   {
     path: 'sign-in',
@@ -35,7 +41,7 @@ const routes: Routes = [
     path: '**',
     pathMatch: 'full',
     redirectTo: 'not-found'
-  }
+  },
 ];
 
 @NgModule({
