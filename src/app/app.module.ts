@@ -49,17 +49,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedModule,
     MainModule,
     UserModule,
-<<<<<<< HEAD
     TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
-=======
+        }),
     MoviesModule
->>>>>>> 250cdd57fab22b4fb9309adfe980a3e28a86072b
   ],
   providers: [
     HttpService,
