@@ -5,6 +5,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { AboutComponent } from './main/about/about.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { UserComponent } from './user/user.component';
+import { CatalogComponent } from './movies/catalog/catalog.component';
+import { MovieComponent } from './movies/movie/movie.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,16 @@ const routes: Routes = [
     path: 'not-found',
     pathMatch: 'full',
     component: NotFoundComponent
+  },
+  {
+    path: 'movies',
+    pathMatch: 'full',
+    component: CatalogComponent
+  },
+  {
+    path: 'movie/:id',
+    pathMatch: 'full',
+    component: MovieComponent
   },
   {
     path: '**',

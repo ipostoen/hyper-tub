@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
 import { UserModule } from './user/user.module';
+import { MoviesModule } from './movies/movies.module';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedModule,
     MainModule,
     UserModule,
+<<<<<<< HEAD
     TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -55,6 +57,9 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         })
+=======
+    MoviesModule
+>>>>>>> 250cdd57fab22b4fb9309adfe980a3e28a86072b
   ],
   providers: [
     HttpService,
