@@ -49,9 +49,9 @@ export class HttpService {
     return headers.set('x_auth', `${token}`);
   }
 
-  'post'(url: string, data: object): Observable<any> {
+  'post'(url: string, data: object, options?: any): Observable<any> {
     this.requestSubject.next('Saving data');
-    return this.http.post(this.apiUrl + url, data)
+    return this.http.post(this.apiUrl + url, data, options)
       .pipe(
         timeout(this.apiTimeout),
         catchError(this.handleError),
@@ -99,9 +99,9 @@ export class HttpService {
       finalize(() => this.endRequest())
     );
   }
-  'delete'(url: string): Observable<any> {
+  'delete'(url: string,  options?: any,): Observable<any> {
     this.requestSubject.next('Deleting data');
-    return this.http.delete(this.apiUrl + url)
+    return this.http.delete(this.apiUrl + url, options)
       .pipe(
         timeout(this.apiTimeout),
         catchError(this.handleError),

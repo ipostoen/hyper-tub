@@ -10,6 +10,16 @@
               </a>
 
               <div class="auth-group">
+                <app-input type="text" type="text" placeholder="FirstName" [control]="form.get('firstName')"></app-input>
+                <app-input-error *ngIf="form.get('firstName').invalid && form.get('firstName').dirty" label="FirstName" [control]="form.get('firstName')"></app-input-error>
+              </div>
+
+              <div class="auth-group">
+                <app-input type="text" type="text" placeholder="LastName" [control]="form.get('lastName')"></app-input>
+                <app-input-error *ngIf="form.get('lastName').invalid && form.get('lastName').dirty" label="LastName" [control]="form.get('lastName')"></app-input-error>
+              </div>
+
+              <div class="auth-group">
                 <app-input type="text" type="text" placeholder="Username" [control]="form.get('username')"></app-input>
                 <app-input-error *ngIf="form.get('username').invalid && form.get('username').dirty" label="Username" [control]="form.get('username')"></app-input-error>
               </div>

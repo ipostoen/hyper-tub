@@ -50,6 +50,9 @@ export class AuthService {
     });
   }
 
+  get token() {
+    return this.$accessTokenSubject.getValue();
+  }
   get redirect() {
     if (!this.redirectUrl) this.redirectUrl = window.sessionStorage.getItem('redirect');
     if (!this.redirectUrl) this.redirectUrl = '/home';
@@ -103,7 +106,20 @@ export class AuthService {
     });
   }
 
+  public signup(user) {
+    return new Promise((resolve, reject) => {
+      this.http.post('/auth/register', user, { observe: 'response' }).subscribe((res) => {
+        return resolve(res.body);
+      }, err => {
+        return reject(err);
+      })
+    })
+  }
+
   public logout() { // should send signout request to backend?
+    this.http.delete('/auth/logout', {
+      headers: HttpService.setAuthHeader(this.token)
+    });
     this.clearStorage();
     this.$userSubject.next(null);
     this.$accessTokenSubject.next(null);
