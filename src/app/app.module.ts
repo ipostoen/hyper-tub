@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
 import { UserModule } from './user/user.module';
+import { MoviesModule } from './movies/movies.module';
 
 export function onAppInit(authService: AuthService) {
   console.log('APP init');
@@ -41,7 +42,8 @@ export class HorErrorHandler implements ErrorHandler {
     AuthModule,
     SharedModule,
     MainModule,
-    UserModule
+    UserModule,
+    MoviesModule
   ],
   providers: [
     HttpService,

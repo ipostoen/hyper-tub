@@ -1,0 +1,118 @@
+@import "../../../colors";
+@import "../../../rem";
+
+.filters {
+  background-color: #28282d;
+  @include mb(30px);
+  @include bs(0 5px 25px 0 rgba(0,0,0,0.3));
+  .filter-content {
+    @include row(center, flex-start);
+    @include p(20px 0);
+    .filter-items {
+      @include rows(center, flex-start);
+      @include h(50px);
+      overflow-x: auto;
+      .filter-item {
+        position: absolute;
+        @include mb(20px);
+        .item-lable {
+          display: block;
+          letter-spacing: 0.2px;
+          @include font(#ffffff80, 12px, 21px, 300);
+        }
+        .item-btn {
+          cursor: pointer;
+          @include h(30px);
+          @include rows(center, flex-start);
+          -webkit-transition: 0.4s ease;
+          -moz-transition: 0.4s ease;
+          transition: 0.4s ease;
+          input {
+            display: block;
+            position: relative;
+            @include w(auto);
+            background-color: transparent;
+            border: none;
+            @include font(#fff, 16px, 21px, 500);
+            @include h(30px);
+            @include mr(12px);
+          }
+          span {
+            display:block;
+            position: relative;
+            @include w(16px);
+            @include h(16px);
+            @include mt(1px);
+            &:after,
+            &:before {
+              content: '';
+              position: absolute;
+              display: block;
+              @include w(16px);
+              @include h(2px);
+              background-color: $white;
+              left: 0;
+              @include br(4px);
+              top: 50%;
+              @include mt(-5px);
+              -webkit-transition: 0.4s ease;
+              -moz-transition: 0.4s ease;
+              transition: 0.4s ease;
+              opacity: 0.75;
+            }
+            &:after {
+              @include w(10px);
+              @include mt(2px);
+            }
+          }
+          &[aria-expanded="true"] span:before,
+          &[aria-expanded="true"] span:after {
+            opacity: 1;
+          }
+          &[aria-expanded="true"] span:before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            transform: rotate(45deg);
+            @include mt(-1px);
+          }
+          &[aria-expanded="true"] span:after {
+            @include mt(-1px);
+            @include w(16px);
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+          }
+          &:hover span:before,
+          &:hover span:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .filters {
+    @include mb(50px);
+  }
+}
+@media (min-width: 992px) {
+  .filter-content {
+    justify-content: space-between;
+    @include p(0);
+    @include h(90px);
+  }
+  .filter-item {
+    @include mb(0);
+    @include mr(50px);
+  }
+}
+@media (min-width: 1200px) {
+  .filter-item {
+    @include mr(60px);
+  }
+}
+
+.catalog {
+  
+}
