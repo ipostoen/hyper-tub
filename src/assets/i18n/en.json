@@ -43,6 +43,8 @@
     	"email": "Email",
     	"confirm_password": "Confirm password",
     	"policy": "I agree to the Privacy Policy",
-    	"have_account": "Already have an account?"
+    	"have_account": "Already have an account?",
+        "movie_search": "Search for a movie that you are looking for",
+        "search": "search"
     }
 }
