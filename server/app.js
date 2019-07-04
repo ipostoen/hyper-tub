@@ -25,6 +25,7 @@ app.set('trust proxy', true);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './public')));
+app.use(morgan('dev'));
 app.use(cors(corsOptions));
 
 app.use('/subtitles', express.static(path.join(__dirname, './subtitles')));
