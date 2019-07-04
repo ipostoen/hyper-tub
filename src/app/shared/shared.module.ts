@@ -5,12 +5,14 @@ import { MaterialModule } from './material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputComponent } from './input/input.component';
 import { InputErrorComponent } from './input-error/input-error.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     InputComponent,
     InputErrorComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { InputErrorComponent } from './input-error/input-error.component';
     ButtonComponent,
     InputComponent,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    VideoPlayerComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,19 @@
+
+  <video controls crossorigin="anonymous" playsinline id="playerId">
+    <!-- poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" -->
+    <ng-container *ngFor="let item of videos">
+      {{item|json}}
+      <source [attr.src]="item.link" [attr.size]="item.size">
+    </ng-container>
+
+    <ng-container *ngIf="subtitles && subtitles.length > 0">
+        <ng-container *ngFor="let item of subtitles">
+
+          <track kind="subtitles" [attr.label]="item.lable"
+            [attr.srclang]="item.locale" [attr.src]="item.file">
+        </ng-container>
+        </ng-container>
+
+    <!-- Fallback for browsers that don't support the <video> element -->
+    <!-- <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a> -->
+  </video>

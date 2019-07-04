@@ -14,7 +14,7 @@ export class AppComponent {
     private router: Router,
     private translate: TranslateService
   ) {
-     translate.setDefaultLang('en');
+    translate.setDefaultLang('en');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         if (event && (event.url.split('?')[0] === '/sign-in' || event.url.split('?')[0] === '/sign-up' || event.url.split('?')[0] === '/not-found')) this.display = false;

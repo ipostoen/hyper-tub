@@ -1,0 +1,7 @@
+@import "../../../rem";
+
+:host() {
+  @include w(100%);
+  @include h(100%);
+
+}

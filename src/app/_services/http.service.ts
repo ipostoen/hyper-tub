@@ -80,8 +80,6 @@ export class HttpService {
       );
   }
   'put'(url: string, data: object, options?: any): Observable<any> {
-    console.log('PUT');
-    
     this.requestSubject.next('Updating data');
     return this.http.put(this.apiUrl + url, data, options)
       .pipe(
