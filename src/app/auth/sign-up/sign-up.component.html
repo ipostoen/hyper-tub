@@ -10,42 +10,42 @@
               </a>
 
               <div class="auth-group">
-                <app-input type="text" type="text" placeholder="FirstName" [control]="form.get('firstName')"></app-input>
+                <app-input type="text" type="text" placeholder="{{ 'sign.first_name' | translate }}" [control]="form.get('firstName')"></app-input>
                 <app-input-error *ngIf="form.get('firstName').invalid && form.get('firstName').dirty" label="FirstName" [control]="form.get('firstName')"></app-input-error>
               </div>
 
               <div class="auth-group">
-                <app-input type="text" type="text" placeholder="LastName" [control]="form.get('lastName')"></app-input>
+                <app-input type="text" type="text" placeholder="{{ 'sign.last_name' | translate }}" [control]="form.get('lastName')"></app-input>
                 <app-input-error *ngIf="form.get('lastName').invalid && form.get('lastName').dirty" label="LastName" [control]="form.get('lastName')"></app-input-error>
               </div>
 
               <div class="auth-group">
-                <app-input type="text" type="text" placeholder="Username" [control]="form.get('username')"></app-input>
+                <app-input type="text" type="text" placeholder="{{ 'sign.username' | translate }}" [control]="form.get('username')"></app-input>
                 <app-input-error *ngIf="form.get('username').invalid && form.get('username').dirty" label="Username" [control]="form.get('username')"></app-input-error>
               </div>
 
               <div class="auth-group">
-                <app-input type="text" type="text" placeholder="Email" [control]="form.get('email')"></app-input>
+                <app-input type="text" type="text" placeholder="{{ 'sign.email' | translate }}" [control]="form.get('email')"></app-input>
                 <app-input-error *ngIf="form.get('email').invalid && form.get('email').dirty" label="Email" [control]="form.get('email')"></app-input-error>
               </div>
 
               <div class="auth-group">
-                <app-input type="password" placeholder="Password" [control]="form.get('password').get('password')"></app-input>
+                <app-input type="password" placeholder="{{ 'sign.password' | translate }}" [control]="form.get('password').get('password')"></app-input>
                 <app-input-error *ngIf="form.get('password').get('password').invalid && form.get('password').get('password').dirty" label="Password" [control]="form.get('password').get('password')"></app-input-error>
               </div>
 
               <div class="auth-group">
-                <app-input type="password" placeholder="Confirm password" [control]="form.get('password').get('password2')"></app-input>
+                <app-input type="password" placeholder="{{ 'sign.confirm_password' | translate }}" [control]="form.get('password').get('password2')"></app-input>
                 <app-input-error *ngIf="form.get('password').invalid && form.get('password').get('password2').dirty" label="Confirm Password" [control]="form.get('password')"></app-input-error>
               </div>
 
               <div class="auth-group checkbox">
                 <input id="remember" name="remember" type="checkbox" checked="checked">
-                <label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
+                <label for="remember">{{ 'sign.policy' | translate }}</label>
               </div>
             </form>
             <app-button (click)="signUp()">Sign up</app-button>
-            <span class="auth-text">Already have an account? <a [routerLink]="['/sign-in']">Sign in!</a></span>
+            <span class="auth-text">{{ 'sign.have_account' | translate }} <a [routerLink]="['/sign-in']">{{ 'sign.sign_in' | translate }}</a></span>
           </div>
         </div>
       </div>
