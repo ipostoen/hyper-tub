@@ -14,6 +14,7 @@ import { MoviesModule } from './movies/movies.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PopupComponent } from './_services/popup/popup.component';
 
 export function onAppInit(authService: AuthService) {
   console.log('APP init');
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     MoviesModule
+  ],
+  entryComponents: [
+    PopupComponent
   ],
   providers: [
     HttpService,

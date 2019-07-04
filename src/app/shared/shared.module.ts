@@ -10,6 +10,9 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { DropdownSelectComponent } from './dropdown-select/dropdown-select.component';
+import { InputPlaceholderComponent } from './input-placeholder/input-placeholder.component';
+import { InputElementComponent } from './input-element/input-element.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -21,6 +24,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputComponent,
     InputErrorComponent,
     VideoPlayerComponent,
+    DropdownSelectComponent,
+    InputPlaceholderComponent,
+    InputElementComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +46,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputComponent,
     MaterialModule,
     FontAwesomeModule,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    DropdownSelectComponent,
+    InputElementComponent
   ]
 })
 export class SharedModule { }

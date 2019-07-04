@@ -8,11 +8,12 @@
 
             <div class="filter-item">
               <div class="item-lable">GENRE:</div>
-              <div class="item-btn" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true"
+              <app-dropdown-select [formControl]="filters.get('ganres')" [multiple]="true" [options]="ganresList" [checkboxes]="true"></app-dropdown-select>
+              <!-- <div class="item-btn" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <input type="button" value="Action/Adventure">
                 <span></span>
-              </div>
+              </div> -->
             </div>
 
           </div>
@@ -27,126 +28,33 @@
 <div class="catalog">
   <div class="container">
     <div class="row">
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
+      <ng-container *ngFor="let item of movies">
 
-      </div>
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-
-        <div class="card">
-          <div class="card-cover">
-            <img src="https://flixgo.co/image/186x284/posts/2019-06/1561136097_us-2019-poster.jpg" alt="">
-            <a href="#" class="card-play">
-              <i class="icon ion-ios-play"></i>
-            </a>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><a href="#">I Dream in Another Language</a></h3>
-            <span class="card-category">
-              <a href="#">Action</a>
-              <a href="#">Triler</a>
-            </span>
-            <span class="card-rate"><i class="icon ion-ios-star"></i>8.4</span>
-          </div>
-        </div>
-
-      </div>
+          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+              <div class="card">
+                <div class="card-cover">
+                  <img [attr.src]="'http://image.tmdb.org/t/p/original'+item.poster_path" alt="">
+                  <a [routerLink]="['/movie', item.id]"  class="card-play">
+                    <i class="icon ion-ios-play"></i>
+                  </a>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title"><a [routerLink]="['/movie', item.id]">{{item.title}}</a></h3>
+                  <span class="card-category">
+                    <ng-container *ngFor="let gen of item.genres">
+                        <a >{{gen}}</a>
+                    </ng-container>
+                  </span>
+                  <span class="card-rate"><i class="icon ion-ios-star"></i>{{item.vote_average}}</span>
+                </div>
+              </div>
+            </div>
+      </ng-container>
+      
+      
+      
     </div>
   </div>
 </div>

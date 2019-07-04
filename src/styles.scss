@@ -1130,3 +1130,337 @@ ul {
   color: #fff;
   font-weight: 500;
 }
+
+div.dropdown-overlay {
+  overflow: auto;
+  max-height: 500px;
+  background-color: #fff;
+  @include rem(border, 1px solid #DCE1E8);
+  @include rem(padding, 3px 1px);
+  padding-right: 0px;
+  @include rem(border-radius, 4px);
+  @include rem(box-shadow, 0 5px 10px 0 rgba(0, 0, 0, 0.2));
+  @include scroll(4px);
+  // @include mat-elevation(1);
+
+  div.input-placeholder-container {
+    @include rem(height, 34px);
+    @include rem(border, 1px solid #dce1e8);
+    @include rem(border-radius, 3px);
+    box-sizing: border-box;
+    background-color: #F7F9FC;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 1px 0 #C1C9D6;
+
+    &:focus-within {
+      @include rem(border, 1px solid #5e9eff);
+    }
+
+    input {
+      display: flex;
+      box-sizing: border-box;
+      flex: 1;
+      caret-color: #2275f2;
+      border: none;
+      outline: 0.001px solid transparent;
+      background-color: #F7F9FC;
+
+      &::placeholder {
+        color: rgba(127, 137, 153, 0.4);
+      }
+
+      &:-internal-autofill-selected {
+        background-color: transparent !important;
+      }
+    }
+
+    .prefix {
+      @include rem(padding, 0px 7px);
+      @include rem(border-right, 1px solid #dce1e8);
+
+    }
+
+    .postfix {
+      @include rem(border-left, 1px solid #dce1e8);
+      @include rem(padding, 0px 7px);
+    }
+
+    .clear {
+      color: #dce1e8;
+      background-color: #afb7c3;
+      @include rem(height, 18px);
+      @include rem(font-size, 18px);
+      @include rem(line-height, 18px);
+      @include rem(border-radius, 50%);
+      @include rem(width, 18px);
+      cursor: pointer;
+    }
+
+    .placeholder {
+      @include p(0 5px);
+    }
+
+    .input {
+      font-family: Muli;
+      @include rem(padding, 6px 6px 6px 8px);
+      // @include rem(font-size, 14px);
+      @include rem(height, 21px);
+      // @include rem(line-height, 21px);
+      // font-weight: 600;
+      @include font(#2A2E33);
+
+      &::placeholder {
+        color: rgba(127, 137, 153, 0.4);
+      }
+    }
+
+    i.icon-prefix {
+      color: #ADB6C1;
+      @include rem(font-size, 15px);
+    }
+
+    i.icon-postfix {
+      color: #B1BAC4;
+      @include rem(font-size, 15px);
+    }
+
+  }
+
+  div.dropdown-select-container {
+    @include font(#2A2E33);
+    min-width: min-content;
+    @include pb(0px);
+
+    div.dropdown-item {
+      @include rem(height, 26px);
+      @include pl(0px);
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+
+      &:hover, &:active {
+        background-color: #EFF2F5;
+        cursor: pointer;
+      }
+
+      i {
+        color: transparent;
+        @include rem(padding-left, 10px);
+        @include rem(padding-right, 8px);
+      }
+
+      &.selected {
+        i {
+          color: #0676EF;
+
+        }
+      }
+    }
+
+    div.dropdown-item {
+      span {
+        @include rem (font-size, 11px);
+        @media screen and (min-width: 1680px) {
+          @include rem (font-size, 14px);
+        }
+        @include h(24px);
+        @include rem(line-height, 24px);
+        @include p(0 10px);
+      }
+    }
+
+    &.checkboxes {
+      div.dropdown-item {
+        // @include rem(padding-left, 11px);
+        justify-content: flex-start;
+        @include rem(min-width, 192px);
+
+        span {
+          @include rem (font-size, 11px);
+        }
+
+        .checkbox {
+          @include size(12px);
+          @media screen and (min-width: 1680px) {
+            @include size(14px);
+          }
+          @include br(3px);
+          @include bs(0 0 1px 0 #7F8999);
+          // @include rem(margin-left, 13.79px);
+          @include m(8px 16px 8px 12px);
+
+          // @include rem(line-height, 15px);
+          // @include rem(font-size, 16px);
+          // @include rem(margin-right, 13.21px);
+          // @include rem(margin-top, 8.79px);
+          // @include rem(margin-bottom, 8.21px);
+          box-sizing: content-box;
+          background-color: #F7F9FC;
+          color: #F7F9FC;
+          position: relative;
+
+          .check {
+            position: absolute;
+            display: inline-block;
+            transform: rotate(45deg);
+            visibility: hidden;
+            @include size(7px, 2px);
+            @include rem(left, 4px);
+            @include rem(bottom, 2px);
+            @media screen and (min-width: 1680px) {
+              @include size(8px, 4px);
+              @include rem(left, 4px);
+              @include rem(bottom, 4px);
+            }
+            position: absolute;
+
+            // @include mr(7px);// @include size(14.19px, 6.6px);
+            @include rem(border-bottom, 2px solid #2275F2);
+            @include rem(border-right, 2px solid #2275F2);
+          }
+
+          &.selected {
+            background-color: #2275F2;
+
+            .check {
+              visibility: visible;
+              border-color: #FFFFFF;
+            }
+
+            // color: #FFFFFF;
+          }
+        }
+
+        span {
+          @include rem(height, 15px);
+          @include rem(padding-top, 6px);
+          @include rem(padding-bottom, 7px);
+          @include rem(font-size, 11px);
+          @media screen and (min-width: 1680px) {
+            @include rem(font-size, 14px);
+          }
+        }
+
+        // input[type=checkbox] {
+        //   margin: 0;
+        //   display: flex;
+        //   @include rem(padding-right, 16px);
+        // }
+      }
+
+      div.dropdown-item-all {
+        //@include rem(margin, 0 14.81px 0 15px);
+        @include rem(height, 29px);
+        // @include rem(padding-bottom, 11px);
+        // @include rem(border-bottom, 1px solid #DBE0E7);
+        @include p(0 10px);
+        @include rem(min-width, 214px);
+        box-shadow: inset 0 -1px 0 0 #DCE1E8;
+        // @include fo#2A2E33
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+          color: transparent;
+
+          &.selected {
+            color: #2275F2;
+          }
+        }
+
+        .check {
+          display: inline-block;
+          transform: rotate(45deg);
+          visibility: hidden;
+          @include size(14.19px, 6.6px);
+          @include mr(7px);
+          @include rem(border-bottom, 2px solid #2275F2);
+          @include rem(border-right, 2px solid #2275F2);
+
+          &.selected {
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    .search-item {
+      @include rem(height, 35px !important);
+      @include rem(padding-right, 15px !important);
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      box-sizing: border-box;
+
+      &:hover, &:active {
+        background-color: #EFF2F5 !important;
+        cursor: pointer;
+      }
+
+      span {
+        white-space: nowrap;
+      }
+
+      i {
+        color: #ADB6C1 !important;
+        @include rem(padding-left, 2px !important);
+        @include rem(padding-right, 10px !important);
+      }
+    }
+  }
+
+  div.dropdown-search-container {
+    // @include size(193px, 380px);
+    @include w(196px);
+    @include rem(max-height, 193px);
+    box-sizing: border-box;
+
+
+    .user-row {
+      @include rows(center, flex-center);
+      @include size(26px, 195px);
+      @include pl(9px);
+      box-sizing: border-box;
+      cursor: pointer;
+
+      span {
+        @include font(#2A2E33, 14px, 21px);
+        @include ml(13px);
+      }
+
+      &.active, &:hover, &:focus {
+        background-color: #F0F2F5;
+      }
+    }
+
+    // div.dropdown-item {
+    //   @include rem(height, 35px);
+    //   @include rem(padding-right, 15px);
+    //   display: flex;
+    //   flex-flow: row nowrap;
+    //   justify-content: flex-start;
+    //   align-items: center;
+    //   box-sizing: border-box;
+    //   &:hover, &:active {
+    //     background-color: #EFF2F5;
+    //     cursor: pointer;
+    //   }
+    //   span {
+    //     white-space: nowrap;
+    //   }
+    //   i {
+    //     color: #ADB6C1;
+    //     @include rem(padding-left, 7px);
+    //     @include rem(padding-right, 10px);
+    //   }
+    // }
+  }
+}

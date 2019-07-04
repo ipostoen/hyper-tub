@@ -1,0 +1,30 @@
+<app-input-placeholder class="tbl-filter" #holder [postfix]="postfix" [type]="type" [prefix]="prefix" [value]="_value" [placeholder]="placeholder" (onClear)="onClear(true)" [ngStyle]="{'cursor: pointer': enabled, 'cursor: default': !enabled}"></app-input-placeholder>
+<ng-template #list>
+  <div class="dropdown-select-container" [class.checkboxes]="_checkboxes" *ngIf="_options.length > 0">
+    <ng-container *ngIf="_checkboxes">
+      <div class="dropdown-item-all" *ngIf="_allRow" (click)="clearAll()">
+        <span>All</span>
+        <div class="check" [class.selected]="isEmpty()"></div>
+        <!-- <i class="fas fa-check" [class.selected]="isEmpty()"></i> -->
+      </div>
+      <div class="dropdown-item" *ngFor="let option of _options;" (click)="toggle(option)">
+        <!-- <i class="fas" [ngClass]="{'fa-check-square': isSelected(option[1]), 'fa-square': !isSelected(option[1])}"></i> -->
+        <div class="checkbox" [class.selected]="isSelected(option)">
+          <div class="check"></div>
+        </div>
+        <span>{{option.name}}</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!_checkboxes">
+      <div class="dropdown-item" [class.search-item]="_mode==='search'" *ngFor="let option of _options;" (click)="onClick(option)"
+      [class.selected]="isSelected(option)">
+        <ng-container *ngIf="_mode==='search'">
+          <i class="fas fa-search"></i><span>{{option.name}}</span>
+        </ng-container>
+        <ng-container *ngIf="_mode==='select'">
+          <span>{{option.name}}</span><i class="fas fa-check"></i>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

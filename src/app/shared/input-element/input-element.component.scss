@@ -1,0 +1,14 @@
+@import "../../../_rem";
+
+:host {
+
+  @include rows(center, flex-start);
+  @include font(#2A2E33, 14px, 18px);
+  .divider {
+    background-color: #E1E3E6;
+    @include rem(box-shadow, inset 0 -1px 0 0 #EBEBEB, inset 1px 0 0 0 #EBEBEB);
+    @include size(28px, 1px);
+  }
+
+
+}

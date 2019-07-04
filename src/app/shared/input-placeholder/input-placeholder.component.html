@@ -1,0 +1,44 @@
+<div class="input-container" >
+  <ng-container *ngIf="prefix" >
+    <span class="prefix">
+      <app-input-element [element]="prefix" (click)="onClick('prefix', $event)"></app-input-element>
+    </span>
+    <!-- <span class="prefix" (click)="focus($event)">{{prefix}}</span>
+    <span class="separator"></span> -->
+  </ng-container>
+  <ng-container *ngIf="type !== 'badges'">
+    <input spellcheck="false" [type]="type" (blur)="onBlur.emit($event)" (focus)="onFocus.emit($event)"
+    [attr.placeholder]="placeholder" readonly="readonly" #input [value]="_value" (input)="onInput($event)"/>
+  </ng-container>
+  <ng-container *ngIf="type === 'badges'">
+    <div>{{value}}</div>
+  </ng-container>
+  <ng-container *ngIf="_postfix">
+    <span class="postfix" *ngIf="showClearButton">
+      <app-input-element [element]="_postfix" (click)="onClick('postfix', $event)" (action)="onAction($event)"></app-input-element>
+    </span>
+  </ng-container>
+</div>
+  <!-- <i *ngIf="_iconClass" class="fas icon-prefix" [ngClass]="_iconClass"></i> -->
+  <!-- <input *ngIf="_control && _editable;else holder" spellcheck="false" class="input" [type]="_type" (keyup)="onInputChange($event)" (paste)="onPaste($event)" (blur)="onBlur($event)" [attr.id]="_id" (focus)="onFocus($event)" [placeholder]="_placeholder" [attr.autocomplete]="_autocomplete" #input [value]="_value"/>
+  <ng-template #holder><div class="input">{{_values}}</div> -->
+    <!-- <span class="holder" #holder>
+      <ng-container *ngIf="_editable; else badges">
+        <ng-container *ngIf="this._control.getValue() !== null; else empty">
+          {{this._control.getValue() | json}}
+        </ng-container>
+        <ng-template #empty> empty
+        </ng-template>
+      </ng-container>
+      <ng-template #badges>
+        <ng-container *ngIf="_values && _values.length === 1; else simpleString">
+          <div class="value-item" *ngFor="let value of _values"><div>{{value}}</div><div class="button" (click)="removeValue(value)">&#10761;</div></div>
+        </ng-container>
+        <ng-template #simpleString><div class="value-item">{{_values}}</div></ng-template>
+      </ng-template>
+    </span> -->
+  <!-- </ng-template> -->
+  <!-- <span class="postfix" *ngIf="postfix">{{postfix}}</span>
+  <i class="icon-postfix fas" *ngIf="_postIcon" [ngClass]="_postIcon"></i>
+  <app-clear-button *ngIf="showClearButton" (press)="onClear($event)"></app-clear-button>
+</div> -->

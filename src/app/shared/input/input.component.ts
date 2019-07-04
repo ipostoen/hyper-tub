@@ -17,6 +17,7 @@ export class InputComponent implements OnInit {
   _control: FormControl;
 
   @Input() placeholder: string;
+  @Input() value;
   @Input()
   set type(type) {
     if (type) this._type = type;

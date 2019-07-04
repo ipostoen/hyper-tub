@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="content.type">
+  <ng-container *ngSwitchCase="'prefix'">
+    <div class="prefix" [ngStyle]="{'padding-left': content.pl, 'padding-right': content.pr}">{{content.text}}</div>
+    <div class="divider"></div>
+
+  </ng-container>
+  <!-- <app-clear-button *ngSwitchCase="'clearButton'" (press)="action.emit($event)"></app-clear-button> -->
+  <!-- <fa-icon *ngSwitchCase="'dropdown'" [icon]="faCaretDown" [classes]="['dropdown', 'postfix']"></fa-icon> -->
+  <ng-container *ngSwitchCase="'postfix'">
+    <div class="divider"></div>
+    <div class="postfix" [ngStyle]="{'padding-left': content.pl, 'padding-right': content.pr}">{{content.text}}</div>
+
+  </ng-container>
+  <span *ngSwitchDefault [ngClass]="content.type">{{content.text}}</span>
+
+</ng-container>

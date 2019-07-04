@@ -1,0 +1,236 @@
+@import "../../../_rem";
+@import '~@angular/material/theming';
+
+// $rem-fallback: true;
+// $rem-baseline: 10px;
+:host {
+  .input-container {
+    @include rem(height, 24px);
+    @include font(#2A2E33, 12px);
+    @media screen and (min-width: 1680px){
+      @include rem(height, 34px);
+      @include font(#2A2E33, 14px);
+    }
+    @include rem(border, 1px solid #dce1e8);
+    @include rem(border-radius, 3px);
+    // @include p(2px 8px);
+    box-sizing: border-box;
+    background-color: #F7F9FC;
+    @include rows(center, flex-start);
+    // display: flex;
+    // flex-flow: row nowrap;
+    // justify-content: space-between;
+    // align-items: center;
+    @include bs(0 0 1px 0 #C1C9D6);
+
+    overflow: hidden;
+    &:focus-within {
+      @include rem(border, 1px solid #5e9eff);
+    }
+    input {
+      // display: flex;
+      box-sizing: border-box;
+      flex: 1;
+      caret-color: #2275f2;
+      border: none;
+      outline: 0.001px solid transparent;
+      background-color: #F7F9FC;
+      width: 100%;
+      @include ml(8px);
+      @include mr(8px);
+      &::placeholder {
+        color: rgba(127,137,153,0.4);
+      }
+    }
+
+    .postfix{
+      width: 20px;
+    }
+    // .prefix {
+    //   @include rem(padding, 0px 8px);
+    //   @include rem(padding-left, 11.5px);
+    //   @include rem(padding-right, 9.65px);
+    //   // @include rem(border-right, 1px solid #dce1e8);
+    //   @include rem(height, 18px);
+    //   @include rem(width, 8px);
+    //   @include rem(font-size, 14px);
+    //   @include rem(line-height, 18px);//#2A2E33
+    //   color: #2A2E33;
+    //   font-family: Muli;
+    //   font-weight: 600;
+    //   cursor: default;
+    // }
+    // .separator {
+    //   @include rem(height, 28px);
+    //   @include rem(width, 1px);
+    //   @include rem(box-shadow, inset -1px 0 0 0 #E6E8EB);
+    //   background-color: #E1E3E6;
+    // }
+    // .postfix {
+      // @include mr(8px);
+    //   @include rem(border-left, 1px solid #dce1e8);
+      // @include rem(padding, 0px 7px);
+    // }
+  }
+
+  // .value-item {
+  //   box-sizing: border-box;
+  //   @include font(#2275F2, 13px, 21px, 700);
+  //   @include rows(flex-start, center);
+  //   // @include rem(border, 1.5px solid #2275F2);
+  //   @include pt(1px);
+  //   @include pl(4px);
+  //   @include br(3px);
+  //   background-color: #D1E3FF;
+  //   .button {
+  //     display: flex;
+  //     box-sizing: border-box;
+  //     @include size(7px);
+  //     @include font(#2275F2, 16px, 3px, 700);
+  //     background-color: #D1E3FF;
+  //     border: none;
+  //     @include p(8px 7px 7px 6px);
+  //     cursor: pointer;
+  //     width: fit-content;
+  //   }
+  // }
+  // div.input-placeholder-container {
+  //   @include rem(height, 34px);
+  //   @include rem(border, 1px solid #dce1e8);
+  //   @include rem(border-radius, 3px);
+  //   @include p(2px 8px);
+  //   box-sizing: border-box;
+  //   background-color: #F7F9FC;
+  //   @include rows(center, flex-start);
+  //   // display: flex;
+  //   // flex-flow: row nowrap;
+  //   // justify-content: space-between;
+  //   // align-items: center;
+  //   @include bs(0 0 1px 0 #C1C9D6);
+  //   @include font(#2A2E33, 14px);
+  //   &:focus-within {
+  //     @include rem(border, 1px solid #5e9eff);
+  //   }
+  //   input {
+  //     display: flex;
+  //     box-sizing: border-box;
+  //     flex: 1;
+  //     caret-color: #2275f2;
+  //     border: none;
+  //     outline: 0.001px solid transparent;
+  //     background-color: #F7F9FC;
+  //
+  //     &::placeholder {
+  //       color: rgba(127,137,153,0.4);
+  //     }
+  //   }
+  //   .prefix {
+  //     @include rem(padding, 0px 8px);
+  //     @include rem(padding-left, 11.5px);
+  //     @include rem(padding-right, 9.65px);
+  //     // @include rem(border-right, 1px solid #dce1e8);
+  //     @include rem(height, 18px);
+  //     @include rem(width, 8px);
+  //     @include rem(font-size, 14px);
+  //     @include rem(line-height, 18px);//#2A2E33
+  //     color: #2A2E33;
+  //     font-family: Muli;
+  //     font-weight: 600;
+  //     cursor: default;
+  //   }
+  //   .separator {
+  //     @include rem(height, 28px);
+  //     @include rem(width, 1px);
+  //     @include rem(box-shadow, inset -1px 0 0 0 #E6E8EB);
+  //   	background-color: #E1E3E6;
+  //   }
+  //   .postfix {
+  //     @include rem(border-left, 1px solid #dce1e8);
+  //     @include rem(padding, 0px 7px);
+  //   }
+  //   .clear {
+  //     color: #DCE1E8;
+  //     background-color: #AFB7C3;
+  //     @include rem(height, 18px);
+  //     @include rem(font-size, 18px);
+  //     @include rem(line-height, 18px);
+  //     @include rem(border-radius, 50%);
+  //     @include rem(width, 18px);
+  //     @include mr(8px);
+  //     cursor: pointer;
+  //   }
+  //   .placeholder {
+  //     padding: 0 5px;
+  //   }
+  //   .holder {
+  //       @include rem(padding, 6px 6px 7px 8px);
+  //   }
+  //   .input {
+  //     font-family: Muli;
+  //     @include rem(padding, 6px 6px 7px 8px);
+  //     @include rem(font-size, 14px);
+  //     @include rem(height, 21px);
+  //     @include rem(line-height, 21px);
+  //     font-weight: 600;
+  //     color: #2A2E33;
+  //     width: 100%;
+  //     white-space: nowrap;
+  //     overflow: hidden;
+  //     &::placeholder {
+  //       color: rgba(127,137,153,0.4);
+  //     }
+  //   }
+  //   i.icon-prefix {
+  //     color: #ADB6C1;
+  //     @include rem(font-size, 15px);
+  //   }
+  //   i.icon-postfix {
+  //     color: #B1BAC4;
+  //     @include rem(font-size, 15px);
+  //   }
+  //   #clearButton {
+  //     @include size(18px);
+  //     @include rem(font-size, 18px);
+  //     @include rem(line-height, 18px);
+  //     vertical-align: middle;
+  //     i {
+  //       display: inline-block;
+  //       line-height: inherit;
+  //       width: 100%;
+  //       height: 100%;
+  //       box-sizing: border-box;
+  //       &.back {
+  //         // @include size(18px);
+  //         @include rem(font-size, 18px);
+  //         // @include p(6.34px 6.25px 6.25px 6.34px);
+  //         color: #DCE1E8;
+  //       }
+  //       &.fore {
+  //         @include p(6px);
+  //         @include rem(font-size, 6px);
+  //         // width: 100%;
+  //         // height: 100%;
+  //         color: #AFB7C3;
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+:host(.tbl-filter){
+  .input-container {
+    position: relative;
+    input {
+      //background: red;
+      padding-right: 25px;
+      box-sizing: border-box;
+    }
+
+    .postfix{
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
