@@ -16,7 +16,7 @@ var app = express();
 var server = http.createServer(app);
 
 var corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   exposedHeaders: ['*'],
 }
@@ -26,9 +26,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './public')));
 app.use(cors(corsOptions));
+
 app.use('/subtitles', express.static(path.join(__dirname, './subtitles')));
 
 app.use('/api', api);
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 
 server.listen(port, () => {

@@ -1,0 +1,50 @@
+{
+    "about": {
+        "title": "Watch movies in HD online",
+        "text_main": "What to do after a hard working day? Everyday life offers a lot of options, but almost everyone on our planet loves to watch your favorite movies. We have created a convenient and unique cinema for watching videos in comfortable conditions for you. You will never again have to look for some free time to find suitable cinemas, have time to buy at the box office or book tickets to your favorite places via the Internet. All this is left behind big prospects to watch movies online in good HD quality on our site. Dear guest of the resource, we offer you to plunge into an amazingly fascinating world right now - film distribution news is available to all users around the clock!",
+        "text_second": "As for the proposed list of movies and TV shows that you can watch here in HD quality, it is constantly expanding and complemented by pictures of the most popular hits of Hollywood and, of course, Russia. In short, every fan of high-quality world cinema will find on our website something that will give him a lot of pleasure from watching online at home! Call your friends and you will have a wonderful time together with family and relatives - our resource will be an excellent accompaniment for your relaxed and fun holiday!",
+        "ultra_hd": "Ultra HD",
+        "film": "Film",
+        "сonvenience": "Convenience",
+        "notifications": "Notifications",
+        "rocket": "Rocket",
+        "multi_language_subtitles": "Multi Language Subtitles",
+        "ultra_hd_desc": "You can watch movies in UltraHD quality!",
+        "film_desc": "We use only high-quality picture and voice acting of films, so that you can enjoy watching!",
+        "сonvenience_desc": "Our cinema offers to watch your favorite movies and TV shows on mobile devices from anywhere in the world!",
+        "notifications_desc": "If necessary, we will notify you about new movies and TV shows!",
+        "rocket_desc": "Our site is well adapted, fast and works like a rocket!",
+        "multi_language_subtitles_desc": "We support multilingual titles!",
+        "how_it_works": "How it works?",
+        "create_account": "Create an account",
+        "choose_plan": "Choose your Plan",
+        "enjoy_movie": "Enjoy watching",
+        "create_account_desc": "By creating an account you will get access to millions of movies and TV shows. You can leave comments!",
+        "choose_plan_desc": "And there is no fare, everything on our site is absolutely free, everything is for you!",
+        "enjoy_movie_desc": "At any time of the year and in any mood, we are always waiting for you on our cozy and always pleasing site!"
+    },
+    "header": {
+    	"home": "Home",
+    	"catalog": "Catalog",
+    	"contacts": "Contacts",
+    	"sign_in": "sign in"
+    },
+    "sign": {
+    	"remember": "Remember Me",
+    	"sign_in": "Sign In",
+    	"no_account": "Don't have an account? ",
+    	"sign_up": "Sign up!",
+    	"forgot_pass": "Forgot password?",
+    	"username": "Username",
+    	"password": "Password",
+    	"first_name": "First Name",
+    	"last_name": "Last Name",
+    	"username": "Username",
+    	"email": "Email",
+    	"confirm_password": "Confirm password",
+    	"policy": "I agree to the Privacy Policy",
+    	"have_account": "Already have an account?",
+        "movie_search": "Search for a movie that you are looking for",
+        "search": "search"
+    }
+}

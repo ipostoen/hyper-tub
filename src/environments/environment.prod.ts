@@ -1,4 +1,9 @@
 export const environment = {
   production: true,
-  apiUrl: '127.0.0.1:3000'
+  apiPort: 3000,
+  apiUrl: '/api',
+  apiProtocol: 'http:',
+  apiHostname: 'localhost',
+  apiPrefix: 'api/',
+  apiTimeout: 25000,
 };
