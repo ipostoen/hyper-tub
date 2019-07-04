@@ -5,6 +5,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     SignInComponent,
@@ -13,7 +21,14 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
   ],
   exports: [
     SignInComponent,

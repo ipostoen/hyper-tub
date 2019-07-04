@@ -14,7 +14,9 @@ export class AppComponent {
     private router: Router,
     private translate: TranslateService
   ) {
-     translate.setDefaultLang('en');
+    translate.addLangs(['en', 'ru'])
+    translate.setDefaultLang('en');
+    translate.use('ru');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         if (event && (event.url.split('?')[0] === '/sign-in' || event.url.split('?')[0] === '/sign-up' || event.url.split('?')[0] === '/not-found')) this.display = false;
@@ -22,5 +24,13 @@ export class AppComponent {
       }
       
     });
+  }
+
+   switchLanguage() {
+     // проверить
+     if (this.translate.currentLang == "ru")
+       this.translate.use("en");
+     else
+       this.translate.use("ru");
   }
 }

@@ -10,23 +10,23 @@
               </a>
 
               <div class="auth-group">
-                <app-input type="text" placeholder="Username" [control]="form.get('username')"></app-input>
+                <app-input type="text" placeholder="{{ 'sign.username' | translate }}" [control]="form.get('username')"></app-input>
               </div>
 
               <div class="auth-group">
-                <app-input type="password" placeholder="Password" [control]="form.get('password')"></app-input>
+                <app-input type="password" placeholder="{{ 'sign.password' | translate }}" [control]="form.get('password')"></app-input>
               </div>
 
               <div class="auth-group checkbox">
                 <input id="remember" name="remember" [(ngModel)]="remember" type="checkbox" checked="checked">
-                <label for="remember">Remember Me</label>
+                <label for="remember" translate>sign.remember</label>
               </div>
             </form>
-            <app-button (click)="signIn()">Sign In</app-button>
-            <span class="auth-text">Don't have an account? <a [routerLink]="['/sign-up']"
-                routerLinkActive="router-link-active">Sign up!</a></span>
+            <app-button (click)="signIn()" translate>sign.sign_in</app-button>
+            <span class="auth-text" translate>sign.no_account<a [routerLink]="['/sign-up']"
+                routerLinkActive="router-link-active" translate>sign.sign_up</a></span>
 
-            <span class="auth-text"><a href="#">Forgot password?</a></span>
+            <span class="auth-text"><a href="#" translate>sign.forgot_pass</a></span>
             <app-button class="google-button">Google</app-button>
             <app-button class="intra">Intra 42</app-button>
           </div>

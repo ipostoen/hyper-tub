@@ -6,6 +6,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputComponent } from './input/input.component';
 import { InputErrorComponent } from './input-error/input-error.component';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     ButtonComponent,
@@ -15,7 +23,14 @@ import { InputErrorComponent } from './input-error/input-error.component';
   imports: [
     CommonModule,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
   ],
   exports: [
     InputErrorComponent,

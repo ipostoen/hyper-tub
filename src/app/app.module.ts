@@ -50,12 +50,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainModule,
     UserModule,
     TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
     MoviesModule
   ],
   providers: [
