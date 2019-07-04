@@ -90,6 +90,8 @@ export class AuthService {
       this.http.get('/auth/login', { params: user, observe: 'response' }).subscribe((res) => {
         if (res) {
           let token = res.headers.get('x-auth');
+          console.log('tokem', res.headers);
+          
           if (token) {
             this.saveToken(token, remember);
             this.$userSubject.next(res.body);
