@@ -59,7 +59,7 @@
   transform: translate3d(0, 0, 0);
 }
 .header-nav-link {
-  @include font(rgba(255,255,255,0.75), 14px, 21, 300);
+  @include font(rgba(255,255,255,0.75), 14px, 21px, 300);
   text-transform: uppercase;
   letter-spacing: 0.2px;
 }

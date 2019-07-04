@@ -9,7 +9,7 @@
               <img src="/assets/logo.svg" alt="">
             </a>
 
-            <div class="header-nav">
+            <div class="header-nav" [ngClass]="{'header-nav-active': openMenu}">
 
               <li class="header-nav-item">
                 <a class="header-nav-link" [routerLink]="['/home']" routerLinkActive="header-nav-link-active"
@@ -29,7 +29,11 @@
             </div>
 
             <div class="header-auth">
-              <button class="header-search-btn" type="button">
+              <button style="margin-right: 20px;"class="header-search-btn" type="button" (click)="sendEvent()">
+                <i class="icon ion-ios-globe"></i>
+              </button>
+
+              <button class="header-search-btn" (click)="openSearch = !openSearch" type="button">
                 <i class="icon ion-ios-search"></i>
               </button>
 
@@ -39,7 +43,7 @@
               </a>
             </div>
 
-            <button class="header-btn" type="button">
+            <button class="header-btn" (click)="openMenu = !openMenu" type="button">
               <span></span>
               <span></span>
               <span></span>
@@ -52,14 +56,14 @@
     </div>
   </div>
 
-  <form action="#" class="header-search">
+  <form action="#" class="header-search" [ngClass]="{'header-search-active': openSearch}">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="header-search-content">
-            <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+            <input type="text" (keyup.enter)="searchFilm()" placeholder="{{ 'sign.movie_search' | translate }}">
 
-            <button type="button">search</button>
+            <button type="button" (click)="searchFilm()">{{ 'sign.search' | translate }}</button>
           </div>
         </div>
       </div>
