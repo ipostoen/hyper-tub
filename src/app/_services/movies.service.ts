@@ -3,8 +3,6 @@ import { map } from 'rxjs/operators';
 import { ReturnStatement } from '@angular/compiler';
 import { HttpService } from './http.service';
 import { AuthService } from './auth.service';
-import { resolve } from 'dns';
-import { reject } from 'q';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
@@ -31,7 +29,7 @@ export class MoviesService {
 
   sendComment(comment: String, filmId: String) {
     return new Promise((resolve, reject) => {
-      this.http.post(`http://localhost:3000/api/comment/${filmId}`, { comment, filmId }, {
+      this.http.post(`/comment`, { comment, filmId }, {
         observe: 'response',
         headers: HttpService.setAuthHeader(this.auth.token)
       }).subscribe((data) => {
@@ -45,7 +43,7 @@ export class MoviesService {
 
   getComment(id) {
     return new Promise((resolve, reject) => {
-      this.http.get(`http://localhost:3000/api/comment/${id}`, {
+      this.http.get(`/comment/${id}`, {
         observe: 'response',
         headers: HttpService.setAuthHeader(this.auth.token)
       }).subscribe((data) => {
@@ -59,7 +57,7 @@ export class MoviesService {
 
   deleteComment(id) {
     return new Promise((resolve, reject) => {
-      this.http.delete(`http://localhost:3000/api/comment/${id}`, {
+      this.http.delete(`/comment/${id}`, {
         observe: 'response',
         headers: HttpService.setAuthHeader(this.auth.token)
       }).subscribe((data) => {

@@ -16,6 +16,7 @@ export class MovieComponent implements OnInit {
   public movie;
   public videos = [];
   public subtitles = [];
+  public comments;
   public player;
   objectKeys = Object.keys;
   commentsForm: FormGroup
@@ -31,23 +32,30 @@ export class MovieComponent implements OnInit {
   ) {
     // this.id = this.route.snapshot.params['id'] || null;
     this.route.params.subscribe((params) => {
-      console.log('ROUTER', params);
       if (params.id && params.id !== this.id) {
         this.id = params.id;
         this.videos = []
         this.subtitles = [];
+        this.moviesService.getComment(this.id)
+          .then((comments) => {
+            if (comments) {
+              this.comments = comments;
+            }
+          }).catch((err) => {
+            console.log('err', err)
+          })
         this.moviesService.getMovieById(this.id)
           .then((movie) => {
             if (movie) {
-              console.log('Movie', movie);
-              
               this.movie = movie;
-              Object.keys(movie['torrents']['en']).forEach((key, i) => {
-                this.videos.push({
-                  link: this.getStreamUrl(key),
-                  size: key.slice(0, -1)
-                })
-              });
+              if (movie['torrents']) {
+                Object.keys(movie['torrents']['en']).forEach((key, i) => {
+                  this.videos.push({
+                    link: this.getStreamUrl(key),
+                    size: key.slice(0, -1)
+                  })
+                });
+              }
               Object.keys(movie['subtitle']).forEach((key, i) => {
                 this.subtitles.push({
                   local: movie['subtitle'][key]['local'],
@@ -55,8 +63,6 @@ export class MovieComponent implements OnInit {
                   lable: movie['subtitle'][key]['lable'],
                 })
               });
-              console.log('vidd', this.videos);
-              
               this.cdr.markForCheck();
             } else {
               this.router.navigate(['movies']);
@@ -73,8 +79,6 @@ export class MovieComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.moviesService.getComment(this.id)
-    
     this.commentsForm = this.fb.group({
       comment: ['', [
         Validators.required,
@@ -97,29 +101,34 @@ export class MovieComponent implements OnInit {
   }
 
   getStreamUrl(quality) {
-    console.log(this.movie, quality);
-    
     return `http://localhost:3000/api/movie/stream/${encodeURIComponent(this.movie.torrents.en[quality].url)}?` +
       `x_auth=${this.auth.token}&-${quality}`;
   }
 
   sendComment() {
-    if (!this.commentsForm.valid) return ;
-      this.moviesService.sendComment(this.commentsForm.value, this.id)
-    .then((res) => {
-
-    }).catch((err) => {
-
-    })
+    if (!this.commentsForm.valid) return;
+    this.moviesService.sendComment(this.commentsForm.value.comment, this.id)
+      .then((res) => {
+        if (res) {
+          res['userId'] = {
+            firstName: this.auth.user['firstName'],
+            lastName: this.auth.user['lastName'],
+          }
+          this.comments.push(res);
+        }
+      }).catch((err) => {
+        
+      })
   }
 
-  deleteComment() {
-    this.moviesService.deleteComment(this.id)
-    .then((res) => {
-
-    }).catch((err) => {
-      console.log(err);
-    })
+  deleteComment(id) {
+    this.moviesService.deleteComment(id)
+      .then((res) => {
+        this.comments = this.comments.filter((item) => item._id !== id);
+        this.cdr.markForCheck();
+      }).catch((err) => {
+        console.log(err);
+      })
   }
 
 }

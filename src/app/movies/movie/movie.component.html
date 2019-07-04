@@ -47,8 +47,8 @@
 			<div *ngIf="videos && videos.length > 0" class="col-12">
 				<app-video-player [vid]="videos" [title]="subtitles"></app-video-player>
 			</div>
-			
-				
+
+
 
 		</div>
 	</div>
@@ -69,34 +69,29 @@
 								<div class="comments">
 									<ul class="comments-list">
 
-										<li class="comments-item">
-											<div class="comments-autor">
-												<!-- <img class="comments-avatar" src="img/user.png" alt=""> -->
-												<span class="comments-name">John Doe</span>
-												<span class="comments-time">30.08.2018, 17:53</span>
-											</div>
-											<p class="comments-text">There are many variations of passages of Lorem Ipsum available, but the
-												majority have suffered alteration in some form, by injected humour, or randomised words which
-												don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need
-												to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-											<div class="comments-actions">
-												<!-- <div class="comments-rate">
-															<button type="button"><i class="icon ion-md-thumbs-up"></i>12</button>
-	
-															<button type="button">7<i class="icon ion-md-thumbs-down"></i></button>
-														</div> -->
-
-												<button type="button"><i class="icon ion-ios-del-alt"></i>Delete</button>
-											</div>
-										</li>
+										<ng-container *ngFor="let item of comments">
+											<li class="comments-item">
+												<div class="comments-autor">
+													<!-- <img class="comments-avatar" src="img/user.png" alt=""> -->
+													<span class="comments-name">{{item.userId.firstName}} {{item.userId.lastName}}</span>
+													<span class="comments-time">{{ item.createdAt | date }}</span>
+												</div>
+												<p class="comments-text">{{item.comment}}</p>
+												<div class="comments-actions">
+													<button type="button" (click)="deleteComment(item._id)"><i
+															class="icon ion-ios-del-alt"></i>Delete</button>
+												</div>
+											</li>
+										</ng-container>
 
 									</ul>
 
-									<form action="#" class="form">
-										<textarea id="text" name="text" class="form-textarea" placeholder="Add comment"></textarea>
-										<app-button class="normal">Send</app-button>
+									<div class="form">
+										<textarea id="text" name="text" [formControl]="commentsForm.get('comment')" class="form-textarea"
+											placeholder="Add comment"></textarea>
 										<!-- <button type="button" class="form-btn">Send</button> -->
-									</form>
+									</div>
+									<app-button class="normal" (click)="sendComment()">Send</app-button>
 								</div>
 							</div>
 							<!-- end comments -->
